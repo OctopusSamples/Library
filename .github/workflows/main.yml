@@ -56,7 +56,7 @@ jobs:
       - name: Build app
         run: |
           npm ci
-          npm run-script build --production
+          npm run-script build -- --production
           cd dist
           npm ci --production
 

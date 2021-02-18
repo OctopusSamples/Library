@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Set version
-        run: echo "::set-env name=PACKAGE_VERSION::$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER"
+        run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
 
       # Runs a set of commands using the runners shell
       - name: Build app
@@ -63,4 +63,4 @@ jobs:
 
       - name: Package app
         run: |
-          octo pack --id="octopus.library.web" --format="Zip" --version="$PACKAGE_VERSION" --basePath="./dist/" --outFolder="./packages"
+          octo pack --id="octopus.library.web" --format="Zip" --version="${{ env.PACKAGE_VERSION }}" --basePath="./dist/" --outFolder="./packages"

@@ -55,9 +55,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build app
         run: |
-          npm install gulp -g
           npm ci
-          gulp --production
+          npm build --production
           cd dist
           npm ci --production
 

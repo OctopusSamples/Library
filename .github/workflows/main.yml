@@ -61,5 +61,7 @@ jobs:
           npm ci --production
 
       - name: Package app
-        run: |
-          octo pack --id="octopus.library.web" --format="Zip" --version="${{ env.PACKAGE_VERSION }}" --basePath="./dist/" --outFolder="./packages"
+        run: octo pack --id="Octopus.Library.Web" --format="Zip" --version="${{ env.PACKAGE_VERSION }}" --basePath="./dist/" --outFolder="./packages"
+
+      - name: Push Octopus.Library.Web to Octopus
+        run: octo push --package="./packages/Octopus.Library.Web.${{ env.PACKAGE_VERSION }}.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_KEY }}"

@@ -31,6 +31,8 @@ jobs:
 
       - name: Install Octopus Deploy CLI
         uses: OctopusDeploy/install-octocli@v1
+        with:
+          version: latestz
 
       - name: Cache node modules
         uses: actions/cache@v2
